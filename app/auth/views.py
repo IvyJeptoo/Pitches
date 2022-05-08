@@ -1,8 +1,9 @@
+from flask import render_template
 from . import auth
 
 @auth.route('/login')
 def login():
-    return "<p>login</p>"
+    return render_template("auth/login.html")
 
 @auth.route('/logout')
 def logout():
@@ -10,4 +11,4 @@ def logout():
 
 @auth.route('/sign-up')
 def sign_up():
-    return "<p>sign-up</p>"
+    return render_template("auth/sign_up.html")
