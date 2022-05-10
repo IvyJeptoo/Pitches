@@ -1,0 +1,10 @@
+.main{
+    border: 1px solid black;
+    width: 50%;
+    
+}
+.container{
+    height: 60%;
+    /* background-image: url(../images/git.jpg); */
+    background-repeat: no-repeat;
+}

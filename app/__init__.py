@@ -1,41 +1,58 @@
 from flask import Flask
+from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+from config import config_options
+from flask_mail import Mail
 from flask_login import LoginManager
+from flask_simplemde import SimpleMDE
+import os
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 
-db = SQLAlchemy()
-DB_NAME = "database.db"
+# app initialization
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pitch.db'
 
-def create_app():
-    app = Flask(__name__)
-    app.config['SECRET_KEY'] = '1234'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    db.init_app(app)
+
+# flask extensions initialization
+bootstrap = Bootstrap(app)
+db = SQLAlchemy(app)
+mail = Mail()
+login_manager = LoginManager(app)
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
+simple = SimpleMDE(app)
+mail = Mail(app)
+photos = UploadSet('photos', IMAGES)
+
+app.config.update(
+MAIL_SERVER='smtp.gmail.com',
+MAIL_PORT='587',
+MAIL_USE_TLS=True,
+MAIL_USERNAME=os.environ.get('EMAIL_USER'),
+MAIL_PASSWORD=os.environ.get('EMAIL_PASS')
+)
+
+def create_app(config_name):
+    # app configurations
+    app.config.from_object(config_options[config_name])
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-   
+    #mail instance
+    mail.init_app(app)
     
+    
+    #main blueprint
     from .main import main as main_blueprint
-    from .auth import auth as auth_blueprint
-    
-    
     app.register_blueprint(main_blueprint)
-    app.register_blueprint(auth_blueprint, url_prefix='/')
     
-    from .models import User, Pitch
-    
-    create_database(app)
-    login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
-    login_manager.init_app(app)
-    
-    @login_manager.user_loader
-    def load_user(id):
-        return User.query.get(int(id))
-    
+    # auth blueprint
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
+
     return app
 
 
-def create_database(app):
-    if not path.exists('app/' + DB_NAME):
-        db.create_all(app=app)
-        print('Created Database!')
+# def create_database(app):
+#     if not path.exists('app/' + DB_NAME):
+#         db.create_all(app=app)
+#         print('Created Database!')
