@@ -1,19 +1,28 @@
-{% extends "base.html" %}
-{% block title %}login{% endblock %}
-{% block content %}
-<form method="POST">
-    <h3 align="centre">Login</h3>
-    <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+content %}
+{% block styles %}{{super()}}
+<!-- <link href="{{url_for('static',filename='css/login.css')}}" rel="stylesheet" /> -->
+{% endblock %}
+<div class="container ">
+    <h1 class="text-center">Login</h1>
+    <div class="row main">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <!-- flash messages -->
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{message}}
+            </div>
+            <!-- login form -->
+            {% endfor %}
+            {{wtf.quick_form(loginform)}}
+            <p>
+                Don't have an account yet?
+                <a href="{{url_for('auth.signup')}}">Sign up</a>
+            </p>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
-    </div>
-    
-    <br>
-    <button type="submit" class="btn btn-secondary">Login</button>
-</form>
+</div>
 {% endblock %}

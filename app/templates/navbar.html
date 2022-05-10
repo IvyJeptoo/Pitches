@@ -1,0 +1,21 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+            {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link" id="home"
+                href="{{url_for('main.profile', uname=current_user.username)}}">Profile</a>
+            <a class="nav-item nav-link" id="logout" href="{{url_for('auth.logout')}}"">Logout</a>
+            {% else %}
+            <a class="nav-item nav-link" id="login" href="{{url_for('auth.login')}}">Login</a>
+            <a class="nav-item nav-link" id="signUp" href="{{url_for('auth.signup')}}">Signup</a>
+            {% endif %}
+        </div>
+        <h4 style="color: white; margin-left: 80%; font-weight: 900;">ONE-MINUTE-PITCH</h4>
+    </div>
+</nav>
+
