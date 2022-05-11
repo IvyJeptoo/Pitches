@@ -25,7 +25,7 @@
             <!-- <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit Profile</a> -->
             <form action="{{url_for('main.update_profile',uname=user.username)}}" method="post"
                 enctype="multipart/form-data">
-                <input type="file" name="photo" class="form-control" required />
+                <input type="file" name="photo" class="form-control" required /> <br> 
                 <input type="submit" />
             </form>
         </div>

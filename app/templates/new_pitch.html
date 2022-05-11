@@ -6,9 +6,9 @@
     <div class="col-md-8 text-center">
         <h2 class="text-center" ">Create Your Pitch</h2>
         <form action="" method="POST">
-            {{ form.category.label() }}  {{ form.category }} <br />
-            {{ form.hidden_tag() }} {{form.title.label()}} {{ form.title }} <br />
-            {{ form.pitchtext.label() }} {{ form.pitchtext }} <br />
+            {{ form.category.label() }}: &nbsp;&nbsp;{{ form.category }} <br />
+            &nbsp;&nbsp;{{ form.hidden_tag() }} {{form.title.label()}} {{ form.title }} <br />
+            &nbsp;{{ form.pitchtext.label() }} {{ form.pitchtext }} <br />
             {{ form.submit }}
         </form>
     </div>

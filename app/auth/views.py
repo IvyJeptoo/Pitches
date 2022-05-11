@@ -5,7 +5,7 @@ from . import auth
 from .forms import SignUpForm, LoginForm
 from .. import db
 from ..models import User
-from ..email import mail_message
+
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -16,9 +16,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         
-        mail_message("Welcome to Pitch", "email/welcome", user.email, user=user)
         
-        return redirect(url_for('auth.login'))
     title = "New Account"
     return render_template('auth/signup.html', signupform=form, title=title)
 

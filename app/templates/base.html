@@ -9,6 +9,7 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous"/>
         {% extends 'bootstrap/base.html'%}
+        
  
 
     <title>{% block title %}Home{% endblock %}</title>
@@ -18,10 +19,11 @@
 {% include 'navbar.html' %}
 {% endblock%}
 
- 
   {% block styles %}{{super()}}
   <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet" />
   {% endblock %}
+
+ 
 <div class="container mainbody">
     {% block content %}
     
