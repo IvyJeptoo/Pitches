@@ -4,7 +4,11 @@
     
 }
 .container{
-    height: 60%;
-    /* background-image: url(../images/git.jpg); */
-    background-repeat: no-repeat;
+    width: 40%;
+    
+    border: 1px solid black;
+}
+input[type = 'submit']{
+    border: 1px solid black;
+    background: transparent;
 }

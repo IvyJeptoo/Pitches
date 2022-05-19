@@ -1,8 +1,6 @@
 {% extends "base.html"%}
 {% from 'pitch_macro.html' import displayPitches with context %}
-{% block styles %} {{super()}}
-<link href="{{url_for('static',filename='css/pitch.css')}}" rel="stylesheet" />
-{% endblock %}
+
 <div class="container-fluid mainp">
     <div class="col-sm-8 col-md-8">
         {% block navbar %} {% include "navbar.html" %} {% endblock %}

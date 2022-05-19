@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% macro displayPitches(allpitches) %} 
-{% block styles %}{{super()}}
-<link href="{{url_for('static',filename='css/pitch.css')}}" rel="stylesheet" />
-{% endblock %}
+
 <div class="container-fluid main" >
     <!-- <div class="col-md-2"> -->
         <div class="jumbotron">
@@ -31,7 +29,7 @@
                     
                     <a href="/upvote/{{pitch.id}}" id=""><button class="btn btn-success">
                         &#128077; {{pitch.upvotes.count()}}
-                    </button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/downvote/{{pitch.id}}"><button class="btn btn-danger">
                         &#128078; {{pitch.downvotes.count()}} </button></a> <br> <br> 
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
